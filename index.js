@@ -5,7 +5,7 @@ import connectToMongoDB from "./database/db_connection.js";
 import { readFileContent } from "./helper/file_helper.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { createPDF } from "./helper/pdf_helper.js";
+import { createPDF, websiteSnapshot } from "./helper/pdf_helper.js";
 import fs from "fs"; // Using fs.promises for async/await
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +35,23 @@ app.get("/", async (req, res) => {
     res.json("PDF created successfully!");
   } else {
     res.json("Problem in creating PDF!");
+  }
+});
+app.get("/web-snap", async (req, res) => {
+  var dir = __dirname + "/uploads/snap";
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  let snapRes = await websiteSnapshot(
+    "uploads/snap",
+    "https://silogateway.com",
+    "about"
+  );
+  if (snapRes) {
+    res.json("Snap created successfully!");
+  } else {
+    res.json("Problem in creating Snap!");
   }
 });
 

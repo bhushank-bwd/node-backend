@@ -4,6 +4,7 @@ export const insertRecord = async (schema, insertObject) => {
     return user.id;
   } catch (error) {
     console.log(error.message);
+    return false;
   }
 };
 export const deleteRecord = async (schema, id) => {
@@ -12,11 +13,14 @@ export const deleteRecord = async (schema, id) => {
 
     if (deletedDocument) {
       console.log(`Deleted document with ID: ${id}`);
+      return true;
     } else {
       console.log(`No document found with ID: ${id}`);
+      return false;
     }
   } catch (error) {
     console.log(error.message);
+    return false;
   }
 };
 export const updateRecord = async (schema, updateData, id) => {
@@ -26,11 +30,14 @@ export const updateRecord = async (schema, updateData, id) => {
     });
     if (updatedDocument) {
       console.log(`Updated document with ID: ${id}`);
+      return true;
     } else {
       console.log(`No document found with ID: ${id}`);
+      return false;
     }
   } catch (error) {
     console.log(error.message);
+    return false;
   }
 };
 export const getDataByConditions = async (

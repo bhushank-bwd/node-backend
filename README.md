@@ -21,6 +21,12 @@
 3. DB_NAME=marketplace
 4. JWT_SECRET=iamjwtkey
 
+## Mongo DB Atlas
+
+1. login your atalas account
+2. create project <project-name>
+3. build database a) add cluster <cluster-name> b) set connection method c) add ip address to use it d) add connection url in in env
+
 ## Notes
 
 1. use `ip addr show` to get ip address on linux

@@ -2,14 +2,7 @@ import express, { json } from "express";
 import cors from "cors";
 import { config as dotenvConfig } from "dotenv";
 import connectToMongoDB from "./database/db_connection.js";
-import { readFileContent } from "./helper/file_helper.js";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { createPDF, websiteSnapshot } from "./helper/pdf_helper.js";
-import fs from "fs"; // Using fs.promises for async/await
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 dotenvConfig();
 
 connectToMongoDB();
@@ -19,40 +12,7 @@ app.use(cors());
 app.use(json());
 
 app.get("/", async (req, res) => {
-  let html = await readFileContent(
-    __dirname + "/assets/html/email_templates/welcome.html"
-  );
-  html = html
-    .replace("{{name}}", "John Doe")
-    .replace("{{additionalInfo}}", "Here are some extra details");
-  var dir = __dirname + "/uploads/pdf";
-
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  const pdfRes = await createPDF(html, "uploads/pdf");
-  if (pdfRes) {
-    res.json("PDF created successfully!");
-  } else {
-    res.json("Problem in creating PDF!");
-  }
-});
-app.get("/web-snap", async (req, res) => {
-  var dir = __dirname + "/uploads/snap";
-
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  let snapRes = await websiteSnapshot(
-    "uploads/snap",
-    "https://silogateway.com",
-    "about"
-  );
-  if (snapRes) {
-    res.json("Snap created successfully!");
-  } else {
-    res.json("Problem in creating Snap!");
-  }
+  res.json("Hello, this is the root route!");
 });
 
 app.listen(port, () => {

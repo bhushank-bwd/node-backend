@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { config as dotenvConfig } from "dotenv";
 dotenvConfig();
-const mongoURI = `${process.env.DB_CONNECTION_STRING}${process.env.DB_NAME}`;
+const mongoURI = `${process.env.DB_CONNECTION_STRING}`;
 
 const connectToMongoDB = async () => {
   try {

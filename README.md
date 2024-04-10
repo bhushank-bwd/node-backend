@@ -20,6 +20,8 @@
 2. DB_CONNECTION_STRING=mongodb://localhost:27017
 3. DB_NAME=marketplace
 4. JWT_SECRET=iamjwtkey
+5. CONTACT_MAIL=
+6. CONTACT_PASSWORD=
 
 ## Mongo DB Atlas
 

@@ -42,6 +42,7 @@ export const updateRecord = async (schema, updateData, id) => {
 };
 export const getDataByConditions = async (
   schema,
+  select = "_id updatedAt",
   whereConditions = {},
   sortCriteria = { updatedAt: -1 },
   limit = 10,
@@ -54,7 +55,7 @@ export const getDataByConditions = async (
     const options = {};
 
     const documents = await schema
-      .find(query, options, { select: "email updatedAt" })
+      .find(query, options, { select: select })
       .sort(sortCriteria)
       .limit(limit)
       .skip(offset);

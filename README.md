@@ -20,6 +20,14 @@
 2. DB_CONNECTION_STRING=mongodb://localhost:27017
 3. DB_NAME=marketplace
 4. JWT_SECRET=iamjwtkey
+5. CONTACT_MAIL=
+6. CONTACT_PASSWORD=
+
+## Mongo DB Atlas
+
+1. login your atalas account
+2. create project <project-name>
+3. build database a) add cluster <cluster-name> b) set connection method c) add ip address to use it d) add connection url in in env
 
 ## Notes
 

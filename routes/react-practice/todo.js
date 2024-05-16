@@ -4,9 +4,10 @@ import TodoModel from "./Schemas/TodoSchema.js";
 import { body, validationResult } from "express-validator";
 const todoRouter = express.Router();
 
-todoRouter.get("/", async (req, res) => {
+todoRouter.post("/", async (req, res) => {
   let limit = req.body.limit || 10;
-  let offset = req.body.offset || 0;
+  let page = req.body.page || 1;
+  let offset = page < 2 ? 0 : (page - 1) * limit;
   let whereCondition = {};
   if (req.body.search && req.body.search.length > 0) {
     whereCondition = {

@@ -9,8 +9,8 @@ connectToMongoDB();
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(cors());
-app.use(json());
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.get("/", async (req, res) => {
   res.json("Hello, this is the root route!");
 });

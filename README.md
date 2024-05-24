@@ -32,3 +32,4 @@
 ## Notes
 
 1. use `ip addr show` to get ip address on linux
+2. cloned on hp laptop

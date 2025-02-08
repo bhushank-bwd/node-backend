@@ -27,6 +27,7 @@ app.get("/", async (req, res) => {
     .status(200)
     .json({ status: newPDF });
 });
+connectToMongoDB();
 app.use("/api/v1/todo", todoRouter);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

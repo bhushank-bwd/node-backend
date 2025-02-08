@@ -32,9 +32,9 @@ todoRouter.post(
   [
     body("title")
       .notEmpty()
-      .withMessage("Enter a username")
+      .withMessage("Enter a title")
       .isLength({ min: 1 })
-      .withMessage("Enter a username(min 1 chars)"),
+      .withMessage("Enter a title(min 1 chars)"),
   ],
   async (req, res) => {
     let status = false;

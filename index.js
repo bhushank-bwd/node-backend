@@ -4,6 +4,8 @@ import { config as dotenvConfig } from "dotenv";
 import connectToMongoDB from "./database/db_connection.js";
 import todoRouter from "./routes/react-practice/todo.js";
 import { createExcel, readExcel } from "./helper/exceljs_helper.js";
+import { createPDF } from "./helper/pdf_helper.js";
+import { invoiceText } from "./extra/constants.js";
 dotenvConfig();
 
 // connectToMongoDB();
@@ -15,12 +17,15 @@ app.use(json());
 app.get("/", async (req, res) => {
   let items = [200, 201, 204, 404, 500, 301, 400, 401, 403, 429];
   var item = items[Math.floor(Math.random() * items.length)];
-  // createExcel();
-  let data = await readExcel();
+
+  const html = invoiceText;
+
+  let newPDF = await createPDF(html, "uploads");
+
   res
     // .setHeader("content-type", "text/plain")
     .status(200)
-    .json(data);
+    .json({ status: newPDF });
 });
 app.use("/api/v1/todo", todoRouter);
 app.listen(port, () => {
